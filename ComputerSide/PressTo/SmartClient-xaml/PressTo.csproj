@@ -125,11 +125,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Core\Core.csproj">
+    <ProjectReference Include="..\..\Core\Core.csproj">
       <Project>{651e9484-ae52-4bf0-993e-0e2e6dbd69d8}</Project>
       <Name>Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Hardware\Hardware.csproj">
+    <ProjectReference Include="..\..\Hardware\Hardware.csproj">
       <Project>{d42163ae-9ea0-44a6-92b0-4e914959de6b}</Project>
       <Name>Hardware</Name>
     </ProjectReference>
