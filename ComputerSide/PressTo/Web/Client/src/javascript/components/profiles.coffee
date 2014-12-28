@@ -11,7 +11,9 @@ Profiles = React.createClass
   componentWillUnmount: -> ProfilesStore.removeChangeListener @_onChange
 
   render: ->
-    profiles = _(@state.profiles).map (profile)-> <Profile key={profile.id} item ={profile} />
+    profiles = _(@state.profiles).map (profile, index)->
+      profile.index = index
+      <Profile key={profile.id} item ={profile} />
     <ul className='profiles' >
       {profiles}
     </ul>

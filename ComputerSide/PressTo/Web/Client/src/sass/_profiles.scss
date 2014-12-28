@@ -1,3 +1,4 @@
+
 body{
   background-color: gray;
 }
@@ -14,26 +15,79 @@ ul.profiles{
   vertical-align: center;
   &>li{
     display: inline-block;
-    background-color: #ddd ;
     cursor: pointer; cursor: hand;
     vertical-align: middle;
-    ul.profile{
+    div.profile {
+      margin: 10px;
+      border: 10px solid #666;
       height: 192px;
       width: 192px;
-      margin: 10px;
-      li{
+      position: relative;
+      &>img{
+        position: absolute;
+        top: 0px;
+        left: 0px;
+      }
+      .dev_name{
+        position: absolute;
+        bottom:0;
+        left:0;
+        text-align: center;
+        width: 100%;
+        padding:10px 0;
         color: white;
-        display: block;
-        padding-top: 10px;
         background-color: black;
-        @include opacity(0.5)
+        @include opacity(0.7)
+      }
+      .dev_info{
+        width: 100%;
+        padding:10px 0;
+        color: white;
+        background-color: black;
+        div{
+          margin-top: 8px;
+          vertical-align: middle;
+        }
+        .dev_phone{
+          background: url(images/phone-16.png) no-repeat;
+          margin-left: 20px;
+          padding-top: 3px;
+        }
+        .dev_hangouts{
+          background: url(images/hangouts-16.png) no-repeat;
+          margin-left: 20px;
+        }
+
       }
     }
 
-    ul.profile:hover{
-      background-image: none !important;
-        background-color: black;
-        @include opacity(0.5)
+    div.profile:focus{
+      /*background-image: none !important;*/
+      /*background-color: black;*/
+      /*@include opacity(0.5)*/
+      box-shadow: 0 0 5px #000;
     }
+  }
+}
+
+
+.profile_animate{
+  &>img{
+    transition: all 0.2s linear;
+  }
+  .dev_info{
+    @include opacity(0);
+    transform: translate(0px, 100px);
+    transition: all 0.2s ease-in-out;
+  }
+}
+.profile_animate:focus{
+  &>img{
+    transform: scale(1.1);
+  }
+  .dev_info{
+    @include opacity(0.9);
+    transform: translate(0px,0px);
+    transition-delay: 0.3s;
   }
 }
