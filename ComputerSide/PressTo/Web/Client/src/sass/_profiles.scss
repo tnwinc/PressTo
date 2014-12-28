@@ -1,0 +1,39 @@
+body{
+  background-color: gray;
+}
+
+@mixin opacity($opacity) {
+  opacity: $opacity;
+  $opacity-ie: $opacity * 100;
+  filter: alpha(opacity=$opacity-ie); //IE8
+}
+
+ul.profiles{
+  width: 100%;
+  text-align: center;
+  vertical-align: center;
+  &>li{
+    display: inline-block;
+    background-color: #ddd ;
+    cursor: pointer; cursor: hand;
+    vertical-align: middle;
+    ul.profile{
+      height: 192px;
+      width: 192px;
+      margin: 10px;
+      li{
+        color: white;
+        display: block;
+        padding-top: 10px;
+        background-color: black;
+        @include opacity(0.5)
+      }
+    }
+
+    ul.profile:hover{
+      background-image: none !important;
+        background-color: black;
+        @include opacity(0.5)
+    }
+  }
+}
