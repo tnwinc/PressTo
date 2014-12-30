@@ -1,0 +1,15 @@
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  var socket = io('http://localhost:8888');
+  socket.on('news', function (data) {
+    console.log(data);
+    socket.emit('my other event', { my: 'data' });
+  });
+  socket.on('serial', function(serial){
+    
+  });
+  socket.on('pressTo', function(data) {
+    alert(data);
+  });
+  
+</script>
