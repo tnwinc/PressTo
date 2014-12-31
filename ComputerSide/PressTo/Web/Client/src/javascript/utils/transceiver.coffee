@@ -6,11 +6,13 @@ init = (ProfilesActions)->
 
   socket.on 'command', (data)->
     switch data.command
-      when 'move_right'
-        ProfilesActions.moveRight 1
-      when 'move_left'
-        ProfilesActions.moveLeft 1
-      when 'move_click'
+      when 'move'
+        if data.offset > 0
+          ProfilesActions.moveRight data.offset
+        else
+          ProfilesActions.moveLeft data.offset * (-1)
+
+      when 'click'
         return true
 
 module.exports= init
