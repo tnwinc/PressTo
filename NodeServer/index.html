@@ -5,7 +5,7 @@
   socket.on('pressTo', function(data) {
     var main = document.getElementById('main');
     var p = document.createElement('p');
-    p.innerHTML = data;
+    p.innerHTML = data.data;
     main.appendChild(p);
   });
   
@@ -13,3 +13,4 @@
 <body>
   <div id="main"></div>
 </body>
+</html>
