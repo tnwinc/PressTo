@@ -32,9 +32,9 @@ moveLeft = (offset)->
   selectProfile _profiles[newIndex]
 
 ProfilesStore = _.extend({}, EventEmitter::,
+  getSelectedProfile: -> _profiles[_selectedProfileIndex]
 
-  getProfiles: ->
-    _profiles
+  getProfiles: -> _profiles
 
   emitChange: ->
     @emit "change"
