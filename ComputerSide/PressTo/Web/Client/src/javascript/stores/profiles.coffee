@@ -26,6 +26,11 @@ moveRight = (offset)->
   if newIndex > (_profiles.length - 1)  then newIndex = _profiles.length - 1
   selectProfile _profiles[newIndex]
 
+moveLeft = (offset)->
+  newIndex = _selectedProfileIndex - offset
+  if newIndex < 0  then newIndex = 0
+  selectProfile _profiles[newIndex]
+
 ProfilesStore = _.extend({}, EventEmitter::,
 
   getProfiles: ->
@@ -54,6 +59,8 @@ ProfilesDispatcher.register (payload)->
       selectProfile action.profile
     when ProfilesConstants.MOVE_RIGHT
       moveRight action.offset
+    when ProfilesConstants.MOVE_LEFT
+      moveLeft action.offset
     else
       return true
 
