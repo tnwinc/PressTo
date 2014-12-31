@@ -1,32 +1,63 @@
 var app = require('http').createServer(handler)
 var io = require('socket.io')(app);
+var SocketSerialPort = require('socket.io-serial').SerialPort;
+var serialDevices = require("serialport");
 var fs = require('fs');
-var serialPort = require("serialport");
 
-var ports = "Empty";
+var serialPort = require("serialport").SerialPort;
 
-serialPort.list(function (err, ports) {
+var Arduino;
+var ArduinoDataHandlers = new Array();
+ArduinoDataHandlers.push({ socket:undefined, method:function(data) { console.log('Arduino data: ' + data); }});
+
+ 
+serialDevices.list(function (err, ports) {
   ports.forEach(function(port) {
-    ports = port.comName;
-    console.log(port.comName);
-    console.log(port.pnpId);
-    console.log(port.manufacturer);
+    if (port.manufacturer.indexOf("Arduino") > -1)
+    {
+      console.log('pnpId: ' + port.pnpId);
+      console.log('Process.env: ' + process.platform);
+      console.log('Start serial port for: ' + port.comName);
+      Arduino = new serialPort(port.comName,{baudrate: 9600}, false);
+      //(port.comName, { baudrate:9600 });
+      
+      // Arduino.on('data', function(data) {
+        // ArduinoDataHandlers.forEach(function(handlerInfo) {
+          // handlerInfo.method(data, handlerInfo.socket);
+        // });
+      // });
+
+
+      Arduino.open(function(error) {
+        if (error){
+          console.log('Failed to open Arduino connection: ' + error);
+        } else {
+          console.log('Opened Arduino connection!');
+          Arduino.on('data', function(data) {
+            ArduinoDataHandlers.forEach(function(handlerInfo) {
+              handlerInfo.method(data, handlerInfo.socket);
+            });
+          });
+        }
+      });
+    }
   });
 });
 
-function onRequest(request, response) {
-  console.log("Request received.");
-  response.writeHead(200, {"Content-Type": "text/plain"});
-  serialPort.list(function(err, ports) {
-    ports.forEach(function(port) {
-      ports = port.comName;
-      console.log(port.comName);
-    });
-  });
-  console.log(ports);
-  response.write(ports);
-  response.end();
-}
+ 
+// Arduino = new serialPort.SerialPort('COM3',{baudrate: 9600}, true);//(port.comName, { baudrate:9600 });
+// Arduino.open(function(error) {
+// if (error){
+  // console.log('Failed to open Arduino connection: ' + error);
+// } else {
+  // console.log('Opened Arduino connection!');
+  // Arduino.on('data', function(data) {
+    // ArduinoDataHandlers.forEach(function(handlerInfo) {
+      // handlerInfo.method(data, handlerInfo.socket);
+    // });
+  // });
+// }
+// });
 
 app.listen(8888);
 
@@ -45,16 +76,11 @@ function handler (req, res) {
 
 io.on('connection', function (socket) {
   socket.emit('news', { hello: 'world' });
-  serialPort.list(function(err, ports) {
-    ports.forEach(function(port) {
-      socket.emit('pressTo', port.comName);
-    });
-  });
-  socket.on('my other event', function (data) {
-    console.log(data);
-  });
+  ArduinoDataHandlers.push({ socket:socket, method:function(data, socket2){
+    //if socket is open
+    socket2.emit('pressTo', { data: data });
+    }});
 });
 
 
 console.log("Server has started.");
-console.log(ports);

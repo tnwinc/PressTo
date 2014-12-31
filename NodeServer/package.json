@@ -1,0 +1,11 @@
+{
+  "name": "PressToServer",
+  "version": "0.1.0",
+  "description": "PressTo Node Server",
+  "dependencies": {
+    "install": "^0.1.8",
+    "npm": "^2.1.16",
+    "socket.io": "^1.2.1",
+    "socket.io-serial": "^0.4.0"
+  }
+}

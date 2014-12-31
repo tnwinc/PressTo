@@ -11,4 +11,5 @@ _ReSharper.*
 *.tss
 .svn
 *.sln.cache
-node_modules
+node_modules/
+npm-debug.log

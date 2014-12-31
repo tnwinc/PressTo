@@ -8,16 +8,19 @@ namespace Hardware
   {
     private SerialPort SerialPort { get; set; }
 
+
     private readonly Button RedButtonBacker= new Button();
     private readonly Button GreenButtonBacker = new Button();
     private readonly Rotary RotarySwitchBacker = new Rotary();
 
     public delegate void ButtonChangedHandler(object sender, ButtonChangedEventArgs e);
     public delegate void RotaryChangedHandler(object sender, RotaryChangedEventArgs e);
+    public delegate void DataLineHandler(object sender, string e);
 
     public event RotaryChangedHandler RotaryChanged;
     public event ButtonChangedHandler RedButtonChanged;
     public event ButtonChangedHandler GreenButtonChanged;
+    public event DataLineHandler DataLineReceived;
 
     public IButton RedButton { get { return RedButtonBacker; } }
     public IButton GreenButton { get { return GreenButtonBacker; } }
@@ -56,23 +59,20 @@ namespace Hardware
       string readData;
       do {
         readData = SerialPort.ReadLine();
+        DataLineReceived(sender, readData);
       }
       while (readData.StartsWith(Rotary.ROTARY_SWITCH + "1023"));
 
       if (readData.StartsWith(Rotary.ROTARY_SWITCH)) {
         RotarySwitchBacker.PopulateFromSerialReader(readData.Substring(Rotary.ROTARY_SWITCH.Length));
         if (RotaryChanged != null) RotaryChanged(sender, new RotaryChangedEventArgs(RotarySwitchBacker.Value));
-      } else
-        if (readData.StartsWith(Button.GREEN_BUTTON)) {
-          GreenButtonBacker.PopulateFromSerialReader(readData.Substring(Button.GREEN_BUTTON.Length));
-          if (GreenButtonChanged != null) GreenButtonChanged(sender, new ButtonChangedEventArgs(ButtonChangedEventArgs.ButtonType.Green, GreenButtonBacker.Pressed));
-        } else
-          if (readData.StartsWith(Button.RED_BUTTON)) {
-            RedButtonBacker.PopulateFromSerialReader(readData.Substring(Button.RED_BUTTON.Length));
-            if (RedButtonChanged != null) RedButtonChanged(sender, new ButtonChangedEventArgs(ButtonChangedEventArgs.ButtonType.Red, RedButtonBacker.Pressed));
-          } else {
-            throw new InvalidOperationException("Unknown data received from hardware: {0}".FormatWith(readData));
-          }
+      } else if (readData.StartsWith(Button.GREEN_BUTTON)) {
+        GreenButtonBacker.PopulateFromSerialReader(readData.Substring(Button.GREEN_BUTTON.Length));
+        if (GreenButtonChanged != null) GreenButtonChanged(sender, new ButtonChangedEventArgs(ButtonChangedEventArgs.ButtonType.Green, GreenButtonBacker.Pressed));
+      } else if (readData.StartsWith(Button.RED_BUTTON)) {
+        RedButtonBacker.PopulateFromSerialReader(readData.Substring(Button.RED_BUTTON.Length));
+        if (RedButtonChanged != null) RedButtonChanged(sender, new ButtonChangedEventArgs(ButtonChangedEventArgs.ButtonType.Red, RedButtonBacker.Pressed));
+      } 
     }
   }
 }
