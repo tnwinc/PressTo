@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleSerialPortReader", "ConsoleSerialPortReader\ConsoleSerialPortReader.csproj", "{D3453A40-3120-486D-BDC8-413D37D02E57}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hardware", "Hardware\Hardware.csproj", "{D42163AE-9EA0-44A6-92B0-4E914959DE6B}"
@@ -11,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwitchBox", "SwitchBox\Swit
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Switcher", "Switcher\Switcher.csproj", "{903F0E35-7DFC-433E-8D59-216C84024689}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PressTo", "PressTo\PressTo.csproj", "{2EBF46CB-FFB7-49DF-B33D-068E0C46951E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PressTo", "PressTo\SmartClient-xaml\PressTo.csproj", "{2EBF46CB-FFB7-49DF-B33D-068E0C46951E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
