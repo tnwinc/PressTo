@@ -5,16 +5,31 @@ ProfilesConstants = require("../constants/profiles")
 _ = require("underscore")
 
 _profiles = []
+_selectedProfileIndex = 0
 
 loadProfiles = (data)->
-  _profiles = data?.members
+  _profiles = _(data?.members).filter (profile)-> profile.deleted is false
+  _profiles.map (profile)-> profile.selected = false
   return
 
+selectProfile = (selectedProfile)->
+  _profiles.map (profile, index)->
+    if profile.id is selectedProfile.id
+      profile.selected = true
+      _selectedProfileIndex = index
+    else
+      profile.selected = false
+  return _profiles
+
+moveRight = (offset)->
+  newIndex = offset + _selectedProfileIndex
+  if newIndex > (_profiles.length - 1)  then newIndex = _profiles.length - 1
+  selectProfile _profiles[newIndex]
 
 ProfilesStore = _.extend({}, EventEmitter::,
 
   getProfiles: ->
-    _(_profiles).filter (profile)-> profile.deleted is false
+    _profiles
 
   emitChange: ->
     @emit "change"
@@ -35,6 +50,10 @@ ProfilesDispatcher.register (payload)->
   switch action.actionType
     when ProfilesConstants.RECEIVE_PROFILES
       loadProfiles action.data
+    when ProfilesConstants.SELECT_PROFILE
+      selectProfile action.profile
+    when ProfilesConstants.MOVE_RIGHT
+      moveRight action.offset
     else
       return true
 

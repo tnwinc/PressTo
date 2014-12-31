@@ -57,21 +57,18 @@ ul.profiles{
           background: url(images/hangouts-16.png) no-repeat;
           margin-left: 20px;
         }
+        .dev_skype{
+          background: url(images/skype-16.png) no-repeat;
+          margin-left: 20px;
+        }
 
       }
-    }
-
-    div.profile:focus{
-      /*background-image: none !important;*/
-      /*background-color: black;*/
-      /*@include opacity(0.5)*/
-      box-shadow: 0 0 5px #000;
     }
   }
 }
 
 
-.profile_animate{
+.profile{
   &>img{
     transition: all 0.2s linear;
   }
@@ -81,7 +78,8 @@ ul.profiles{
     transition: all 0.2s ease-in-out;
   }
 }
-.profile_animate:focus{
+.profile_animate{
+  box-shadow: 0 0 5px #000;
   &>img{
     transform: scale(1.1);
   }
