@@ -2,6 +2,7 @@
 React = require 'react'
 Profiles = require './components/profiles'
 ProfilesActions = require("./actions/profiles")
+Transceiver = require("./utils/transceiver")
 $ = require 'jquery'
 
 mockMoves = ->
@@ -15,4 +16,7 @@ mockMoves = ->
       React.createElement(Profiles),
       document.getElementById('content')
     )
-    window.setInterval mockMoves, 3000
+    #window.setInterval mockMoves, 3000
+    window.setTimeout ()->
+      console.log 'start listening on client socket..'
+      Transceiver(ProfilesActions)

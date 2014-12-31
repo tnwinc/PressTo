@@ -2,10 +2,6 @@
   "name": "PressTo",
   "version": "0.1.0",
   "description": "PressTo",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/greypants/gulp-starter.git"
-  },
   "browserify": {
     "transform": [
       "browserify-shim",
@@ -44,12 +40,14 @@
     "react": "^0.12.0",
     "reactify": "^0.15",
     "watchify": "~2.1.0",
-    "coffee-reactify": "~2.1.0"
+    "coffee-reactify": "~2.1.0",
+    "socket.io-client": ""
   },
   "dependencies": {
     "flux": "^2.0.0",
     "react": "^0.12.0",
     "underscore": "^1.7.0",
-    "jquery": "~2.1.0"
+    "jquery": "~2.1.0",
+    "socket.io-client": ""
   }
 }

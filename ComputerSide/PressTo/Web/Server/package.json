@@ -1,0 +1,9 @@
+{
+  "name": "PressToServer",
+  "version": "0.1.0",
+  "description": "PressTo Node Server",
+  "dependencies": {
+    "express": "^4.10.6",
+    "socket.io": "^1.2.1"
+  }
+}
