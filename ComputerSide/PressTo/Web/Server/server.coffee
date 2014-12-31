@@ -7,5 +7,5 @@ io.on 'connect', (socket)->
   console.log 'connection established...'
   setInterval ()->
     console.log 'sending command...'
-    socket.emit 'command', {command: 'move_right'}
+    socket.emit 'command', {command: 'move', offset: 1}
   , 5000
