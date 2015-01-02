@@ -6,7 +6,7 @@ Profile = React.createClass
   animateProfile: (event)->
     ProfilesActions.selectProfile @props.item
 
-  componentWillUpdate: ->
+  componentDidUpdate: ->
     if(@props.item.selected)
       @refs['profileContainer'].getDOMNode().focus()
 
