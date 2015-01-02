@@ -49,11 +49,27 @@ function handler (req, res) {
 }
 
 io.on('connection', function (socket) {
-  socket.emit('news', { hello: 'world' });
   ArduinoDataHandlers.push({ socket:socket, method:function(data, socket2){
-    //if (socket2.op//if socket is open
-    socket2.emit('pressTo', { data: data });
-    }});
+    if (data.indexOf('wheel:') >= 0) {
+      var parsedOffset = parseInt(data.substring(data.indexOf(':') + 1));
+      if (parsedOffset != NaN)
+        socket2.emit('command', {command: 'move', offset: parsedOffset});
+    }
+    else if (data.indexOf('wheelButton:up') >= 0){
+      socket2.emit('command', {command: 'click', offset: 1} );
+      console.log('Sending command: click(offset: 1)');
+    }
+    //else if (data.indexOf('wheel:touch') >= 0) {
+    //  console.log('Wheel touch not coded yet')
+    //}
+    //else if (data.indexOf('wheel:timeout') >= 0){
+    //  console.log('Wheel timeout not coded yet');
+    //}
+    //else if (data.indexOf('START') >= 0){
+    //  console.log('START received');
+    //}
+    //else console.log('Unknown arduino command: ' + data.toString());
+  }});
 });
 
 
