@@ -13,3 +13,4 @@ _ReSharper.*
 *.sln.cache
 node_modules/
 npm-debug.log
+*.orig

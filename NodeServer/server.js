@@ -32,7 +32,6 @@ serialDevices.list(function (err, ports) {
   });
 });
 
- 
 app.listen(8888);
 
 function handler (req, res) {
@@ -49,11 +48,16 @@ function handler (req, res) {
 }
 
 io.on('connection', function (socket) {
-  socket.emit('news', { hello: 'world' });
   ArduinoDataHandlers.push({ socket:socket, method:function(data, socket2){
-    //if (socket2.op//if socket is open
-    socket2.emit('pressTo', { data: data });
-    }});
+    if (data.indexOf('wheel:') >= 0) {
+      var parsedOffset = parseInt(data.substring(data.indexOf(':') + 1));
+      if (parsedOffset != NaN)
+        socket2.emit('command', {command: 'move', offset: parsedOffset});
+    }
+    else if (data.indexOf('wheelButton:up') >= 0){
+      socket2.emit('command', {command: 'click', offset: 1} );
+    }
+  }});
 });
 
 

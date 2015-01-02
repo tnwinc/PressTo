@@ -13,9 +13,9 @@ int prevKey = -1;
 int inc = 0;
 long lastTouchTime = 0;
 long delayTime = 3000;
+long sentWheelIncTime = 0;
+long slowInc = 500;
 
-
-// =========  setup  =========
 void setup()
 { 
 	//  initialize function
@@ -27,8 +27,6 @@ void setup()
   Serial.println("START"); 
 }
 
-
-// =========  loop  =========
 void loop()
 {
   key=CapaTouch.wheelKey();
@@ -64,7 +62,14 @@ void loop()
       
       if (inc != 0){
         Serial.print("wheel:");
-        Serial.println(inc);
+        if (inc == 2 && time - sentWheelIncTime >= slowInc)
+        {
+          Serial.println(1);
+        }
+        else {
+          Serial.println(inc);
+        }
+        sentWheelIncTime = time;
       }
     } else if (prevKey != 20) Serial.println("wheel:touch");
     prevKey = key;
@@ -74,7 +79,7 @@ void loop()
     prevKey = key;
   }
   
-  delay(200);
+  delay(100);
 }
 
 
