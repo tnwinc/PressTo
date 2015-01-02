@@ -15,11 +15,7 @@ serialDevices.list(function (err, ports) {
   ports.forEach(function(port) {
     if (port.manufacturer.indexOf("Arduino") > -1)
     {
-      console.log('pnpId: ' + port.pnpId);
-      console.log('Process.env: ' + process.platform);
-      console.log('Start serial port for: ' + port.comName);
-      Arduino = new serialPort(port.comName,{baudrate: 9600}, false);
-
+      Arduino = new serialPort(port.comName,{ baudrate: 9600, buffersize: 1024, parser: serialDevices.parsers.readline('\r\n') }, false);
       Arduino.open(function(error) {
         if (error){
           console.log('Failed to open Arduino connection: ' + error);
@@ -54,7 +50,7 @@ function handler (req, res) {
 io.on('connection', function (socket) {
   socket.emit('news', { hello: 'world' });
   ArduinoDataHandlers.push({ socket:socket, method:function(data, socket2){
-    //if socket is open
+    //if (socket2.op//if socket is open
     socket2.emit('pressTo', { data: data });
     }});
 });
