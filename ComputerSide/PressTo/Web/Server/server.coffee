@@ -8,9 +8,8 @@ io.on 'connect', (socket)->
   setInterval ()->
     console.log 'sending move command...'
     socket.emit 'command', {command: 'move', offset: 1}
-    console.log 'sending click command...'
-    socket.emit 'command', {command: 'click', offset: 1}
-  , 5000
+    #console.log 'sending click command...'
+    #socket.emit 'command', {command: 'click', offset: 1}
+  , 3000
 
-  socket.on 'clicked', (data)->
-    console.log 'clicked..', data.profile
+  #socket.on 'clicked', (data)-> console.log 'clicked..', data.profile
