@@ -19,14 +19,6 @@ serialDevices.list(function (err, ports) {
       console.log('Process.env: ' + process.platform);
       console.log('Start serial port for: ' + port.comName);
       Arduino = new serialPort(port.comName,{baudrate: 9600}, false);
-      //(port.comName, { baudrate:9600 });
-      
-      // Arduino.on('data', function(data) {
-        // ArduinoDataHandlers.forEach(function(handlerInfo) {
-          // handlerInfo.method(data, handlerInfo.socket);
-        // });
-      // });
-
 
       Arduino.open(function(error) {
         if (error){
@@ -43,21 +35,6 @@ serialDevices.list(function (err, ports) {
     }
   });
 });
-
- 
-// Arduino = new serialPort.SerialPort('COM3',{baudrate: 9600}, true);//(port.comName, { baudrate:9600 });
-// Arduino.open(function(error) {
-// if (error){
-  // console.log('Failed to open Arduino connection: ' + error);
-// } else {
-  // console.log('Opened Arduino connection!');
-  // Arduino.on('data', function(data) {
-    // ArduinoDataHandlers.forEach(function(handlerInfo) {
-      // handlerInfo.method(data, handlerInfo.socket);
-    // });
-  // });
-// }
-// });
 
 app.listen(8888);
 
