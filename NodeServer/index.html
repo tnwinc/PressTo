@@ -2,7 +2,7 @@
 <script src="/socket.io/socket.io.js"></script>
 <script>
   var socket = io('http://localhost:8888');
-  socket.on('pressTo', function(data) {
+  socket.on('move', function(data) {
     var main = document.getElementById('main');
     var p = document.createElement('p');
     p.innerHTML = data.data;

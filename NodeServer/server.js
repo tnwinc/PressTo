@@ -56,18 +56,7 @@ io.on('connection', function (socket) {
     }
     else if (data.indexOf('wheelButton:up') >= 0){
       socket2.emit('command', {command: 'click', offset: 1} );
-      console.log('Sending command: click(offset: 1)');
     }
-    //else if (data.indexOf('wheel:touch') >= 0) {
-    //  console.log('Wheel touch not coded yet')
-    //}
-    //else if (data.indexOf('wheel:timeout') >= 0){
-    //  console.log('Wheel timeout not coded yet');
-    //}
-    //else if (data.indexOf('START') >= 0){
-    //  console.log('START received');
-    //}
-    //else console.log('Unknown arduino command: ' + data.toString());
   }});
 });
 
