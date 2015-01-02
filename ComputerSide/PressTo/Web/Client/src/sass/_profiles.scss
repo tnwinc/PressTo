@@ -70,11 +70,11 @@ ul.profiles{
 
 .profile{
   &>img{
-    transition: all 0.2s linear;
+    transition: all 0.1s linear;
   }
   .dev_info{
     @include opacity(0);
-    transform: translate(0px, 100px);
+    transform: translateY(50px);
     transition: all 0.2s ease-in-out;
   }
 }
@@ -85,7 +85,7 @@ ul.profiles{
   }
   .dev_info{
     @include opacity(0.9);
-    transform: translate(0px,0px);
-    transition-delay: 0.3s;
+    transform: translateY(0px);
+    transition-delay: 0.2s;
   }
 }
