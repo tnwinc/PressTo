@@ -12,6 +12,7 @@ Profiles = React.createClass
 
   render: ->
     profiles = _(@state.profiles).map (profile, index)->
+      profile.index = index
       <Profile key={profile.id} item ={profile} />
     <ul className='profiles' >
       {profiles}

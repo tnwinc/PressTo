@@ -6,6 +6,10 @@ Profile = React.createClass
   animateProfile: (event)->
     ProfilesActions.selectProfile @props.item
 
+  componentWillUpdate: ->
+    if(@props.item.selected)
+      @refs['profileContainer'].getDOMNode().focus()
+
   render: ->
     devName = if  @props.item.profile.real_name_normalized then @props.item.profile.real_name_normalized  else 'Oh Noes! I haven\'t updated my slack profile '
     devTitle = if  @props.item.profile.title then @props.item.profile.title  else 'Not sure What I do!'
@@ -16,8 +20,9 @@ Profile = React.createClass
       'profile': true,
       'profile_animate': @props.item.selected
     )
+
     <li>
-      <div className={classes} onClick={@animateProfile}>
+      <div tabIndex={tabindex} className={classes} onClick={@animateProfile} ref="profileContainer" >
         <img src={@props.item.profile.image_192} />
         <div className ='dev_name'> {devName} </div>
         <div className='dev_info'>
