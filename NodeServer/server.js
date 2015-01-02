@@ -32,7 +32,6 @@ serialDevices.list(function (err, ports) {
   });
 });
 
- 
 app.listen(8888);
 
 function handler (req, res) {
