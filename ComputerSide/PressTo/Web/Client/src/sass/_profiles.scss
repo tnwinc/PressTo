@@ -1,6 +1,7 @@
 
 body{
   background-color: gray;
+  font-family: Tahoma;
 }
 
 @mixin opacity($opacity) {
@@ -23,6 +24,7 @@ ul.profiles{
       height: 192px;
       width: 192px;
       position: relative;
+      font-size: smaller;
       &>img{
         position: absolute;
         top: 0px;
@@ -36,12 +38,11 @@ ul.profiles{
         width: 100%;
         padding:10px 0;
         color: white;
-        background-color: black;
-        @include opacity(0.7)
+        background-color: rgba(0,0,0,0.5);
       }
       .dev_info{
         width: 100%;
-        padding:10px 0;
+        padding:3px 0;
         color: white;
         background-color: black;
         div{
@@ -50,16 +51,15 @@ ul.profiles{
         }
         .dev_phone{
           background: url(images/phone-16.png) no-repeat;
-          margin-left: 20px;
+          margin-left: 16px;
           padding-top: 3px;
         }
-        .dev_hangouts{
-          background: url(images/hangouts-16.png) no-repeat;
-          margin-left: 20px;
+        .dev_hangouts, .dev_vacation{
+          padding-left: 5px;
         }
         .dev_skype{
           background: url(images/skype-16.png) no-repeat;
-          margin-left: 20px;
+          margin-left: 16px;
         }
 
       }

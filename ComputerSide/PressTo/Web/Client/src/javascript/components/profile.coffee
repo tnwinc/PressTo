@@ -14,6 +14,8 @@ Profile = React.createClass
     devName = @props.item.name
     devTitle = @props.title
 
+    devVacation = if @props.item.vacation then "I will be out #{@props.item.vacation}" else ''
+
     tabindex = "#{@props.item.index}"
     cx = React.addons.classSet
     classes = cx(
@@ -26,18 +28,20 @@ Profile = React.createClass
         <img src={@props.item.imageUrl} />
         <div className ='dev_name'> {devName} </div>
         <div className='dev_info'>
-          <div className ='dev_title' > {devTitle} </div>
+          <div className ='dev_title' >
+            {devTitle}
+          </div>
           <div className='dev_phone' >
               {@props.item.phone}
-          </div>
-          <div className='dev_skype'>
-            {@props.item.skype_id}
           </div>
           <div className='dev_hangouts'>
             {@props.item.hangouts_id}
           </div>
+          <div className='dev_skype'>
+            {@props.item.skype_id}
+          </div>
           <div className='dev_vacation'>
-            Vacation: {@props.item.vacation}
+            {devVacation}
           </div>
 
         </div>
