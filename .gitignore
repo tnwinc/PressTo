@@ -14,6 +14,6 @@ _ReSharper.*
 node_modules/
 npm-debug.log
 *.orig
-ComputerSide/PressTo/Web/Server/Outbox-c8b7d36337c2.p12
-ComputerSide/PressTo/Web/Server/outbox.pem
-ComputerSide/PressTo/Web/Server/secret.js
+*.p12
+*.pem
+secret.js
