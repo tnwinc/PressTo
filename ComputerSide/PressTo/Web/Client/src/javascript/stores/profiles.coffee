@@ -8,7 +8,7 @@ _profiles = []
 _selectedProfileIndex = 0
 
 loadProfiles = (data)->
-  _profiles = _(data?.members).filter (profile)-> profile.deleted is false
+  _profiles = data
   _profiles.map (profile)-> profile.selected = false
   return
 

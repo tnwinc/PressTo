@@ -11,8 +11,8 @@ Profile = React.createClass
       @refs['profileContainer'].getDOMNode().focus()
 
   render: ->
-    devName = if  @props.item.profile.real_name_normalized then @props.item.profile.real_name_normalized  else 'Oh Noes! I haven\'t updated my slack profile '
-    devTitle = if  @props.item.profile.title then @props.item.profile.title  else 'Not sure What I do!'
+    devName = @props.item.name
+    devTitle = @props.title
 
     tabindex = "#{@props.item.index}"
     cx = React.addons.classSet
@@ -23,19 +23,23 @@ Profile = React.createClass
 
     <li>
       <div tabIndex={tabindex} className={classes} onClick={@animateProfile} ref="profileContainer" >
-        <img src={@props.item.profile.image_192} />
+        <img src={@props.item.imageUrl} />
         <div className ='dev_name'> {devName} </div>
         <div className='dev_info'>
           <div className ='dev_title' > {devTitle} </div>
           <div className='dev_phone' >
-              {@props.item.profile.phone}
+              {@props.item.phone}
           </div>
           <div className='dev_skype'>
-            {@props.item.profile.skype}
+            {@props.item.skype_id}
           </div>
           <div className='dev_hangouts'>
-            coming soon...
+            {@props.item.hangouts_id}
           </div>
+          <div className='dev_vacation'>
+            Vacation: {@props.item.vacation}
+          </div>
+
         </div>
       </div>
     </li>

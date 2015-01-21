@@ -4,14 +4,13 @@ Profiles = require './components/profiles'
 ProfilesActions = require("./actions/profiles")
 Transceiver = require("./utils/transceiver")
 ProfilesStore = require("./stores/profiles")
-Secret = require './utils/secret'
 $ = require 'jquery'
 
 mockMoves = ->
   console.log 'moving right..'
   ProfilesActions.moveLeft 2
 
-($.getJSON "https://slack.com/api/users.list?token=#{Secret.token}")
+($.getJSON "http://localhost:8888/users")
   .done (data)=>
     ProfilesActions.receiveProfiles data
     React.render(

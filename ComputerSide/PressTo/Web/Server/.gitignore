@@ -3,3 +3,6 @@
 Desktop.ini
 node_modules
 server.js
+.pem
+secret.coffee
+.p12
