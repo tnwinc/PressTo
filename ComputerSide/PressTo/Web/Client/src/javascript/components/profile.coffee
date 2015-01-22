@@ -25,7 +25,7 @@ Profile = React.createClass
 
     <li>
       <div tabIndex={tabindex} className={classes} onClick={@animateProfile} ref="profileContainer" >
-        <img src={@props.item.imageUrl} />
+        <img src={@props.item.imageUrl} height=192 width=192 />
         <div className ='dev_name'> {devName} </div>
         <div className='dev_info'>
           <div className ='dev_title' >
