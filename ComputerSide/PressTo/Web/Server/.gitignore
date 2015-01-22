@@ -2,7 +2,7 @@
 .sass-cache
 Desktop.ini
 node_modules
-server.js
-.pem
+*.js
+*.pem
 secret.coffee
-.p12
+*.p12
