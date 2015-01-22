@@ -12,7 +12,7 @@ Profile = React.createClass
 
   render: ->
     devName = @props.item.name
-    devTitle = @props.title
+    devTitle = @props.item.title
 
     devVacation = if @props.item.vacation then "I will be out #{@props.item.vacation}" else ''
 
