@@ -63,8 +63,8 @@ getDevInfo = ()->
               info.skype_id = memberFound.profile.skype
               info.title = memberFound.profile.title
           payload.push info
-
-        deferred.resolve payload
+        sortedPayload = _(payload).sortBy('name')
+        deferred.resolve sortedPayload
   return deferred.promise
 
 app.get  '/users',
