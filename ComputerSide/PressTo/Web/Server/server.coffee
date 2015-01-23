@@ -8,7 +8,9 @@ serialDevices = require("serialport")
 fs = require("fs")
 serialPort = require("serialport").SerialPort
 DevInfo = require('./devinfo')
-
+spawn = require('child_process').spawn
+proc = null
+ 
 app.use cors()
 
 server.listen 8888, ()-> console.log ' server listening on port 8888'
@@ -67,6 +69,16 @@ serialDevices.list (err, ports)->
   return
 
 io.on "connection", (socket)->
+  socket.on 'clicked', (data)->
+    hangoutId = if data.profile.hangouts_id then data.profile.hangouts_id.trim() else if data.profile.email.indexOf('@gmail.com') >= 0 then data.profile.email.trim() else ''
+    console.log 'clicked..' + hangoutId
+#    if proc 
+#      console.log 'Kill hangout proc and set it to null'
+#      proc.kill('SIGINT')
+#    proc = spawn('HangoutStarter', [data.profile.hangouts_id.trim()])
+#    console.log 'Hangout starter launched: ' + proc.pid
+#    proc.stdin.end()
+#    
   ArduinoDataHandlers.push
     socket: socket
     method: (data, socket2)->
