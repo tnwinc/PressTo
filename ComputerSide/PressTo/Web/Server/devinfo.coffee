@@ -20,7 +20,7 @@ module.exports = ()->
     throw err  if err
     spreadsheet.receive (err, rows, info)->
       throw err  if err
-      devs = _.filter rows, (row, index)-> index >3 and index < 29
+      devs = _.filter rows, (row, index)-> index >2 and index < 29
 
       client.get "api/users.list?token=#{Secret.token}", (err, response, profiles)->
         _(devs).each (dev, index)->
