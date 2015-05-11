@@ -30,3 +30,4 @@ Switcher.csproj handles the software UI, which listens to signals from the devic
 # Special Thanks
 * The Network - for supplying the hardware and allocating time to the project
 * Mit Raval - for suggesting the name
+* Tej Gandham - for contributions to the node server and Slack integration
