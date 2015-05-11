@@ -5,7 +5,7 @@ Pronounced \'pres-tō\\. This repository contains details on how to make an Adru
 
 # Parts
 * Arduino (Uno, Nano, etc., tested with the ATmega328 microcontroller)
-* Rotary Switch (12 position or less is currently tested) http://www.robotmesh.com/rotary-switch-module-v1
+* Capacitive Touch Wheel (http://www.dfrobot.com/index.php?route=product/product&product_id=463)
 * Green Button (http://amzn.com/B0094GRZPE)
 * Red Button (http://amzn.com/B0097A8PK6)
 * Plastic Printer (for the housing)
