@@ -1,3 +1,7 @@
+NOTE:
+=======
+This repo is being archived because it was never used for more than a prototype. The code is obsolete and being retired.
+
 PressTo
 =======
 
